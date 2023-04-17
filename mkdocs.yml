@@ -1,0 +1,42 @@
+site_name: Pixkit Documentation
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.path
+    - navigation.top
+  favicon: assets/images/pixmoving.png
+  icon:
+    repo: fontawesome/brands/github
+  language: en
+  palette:
+    - scheme: default
+      primary: white
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      primary: grey
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+extra:
+  version:
+    provider: mike
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+plugins:
+  - awesome-pages
+  - macros
+  - mkdocs-video
+  - search
+site_url: https://autowarefoundation.github.io/autoware-documentation
+repo_url: https://github.com/pixmoving-moveit/pixkit-documentation
