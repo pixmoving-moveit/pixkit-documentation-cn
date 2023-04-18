@@ -1,6 +1,5 @@
 nav:
   - 启动autoware.md
-  - 车道内行驶.md
   - 多传感器融合定位.md
   - 基于LiDAR的感知.md
   - 基于lanelet2地图的全局路径规划.md
