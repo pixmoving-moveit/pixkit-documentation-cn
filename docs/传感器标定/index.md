@@ -13,6 +13,16 @@
 ## 传感器标定包括:
 - [相机内参标定](./camera%E5%86%85%E5%8F%82%E6%A0%87%E5%AE%9A.md)
 - [激光雷达到相机的外参标定](./LiDAR-camera%E6%A0%87%E5%AE%9A.md)
+- [IMU标定](./IMU%E6%A0%87%E5%AE%9A.md)
+- [LiDAR-IMU标定](./LiDAR-IMU%E6%A0%87%E5%AE%9A.md)
+
+## 传感器硬件包括：
+- lidar 
+    - [RS-Helios-16P](https://www.robosense.cn/rslidar/RS-Helios)
+- camera
+    - [森云SG2-OX03CC-5200-GMSL2F-H120](https://www.sensing-world.com/productinfo/913484.html)
+- 组合导航
+    - [华测CHC® CGI-410](https://www.huace.cn/product/product_show/467)
 
 ## NEXT
 现在，您已经完成`传感器标定介绍`，接下来可以开始:
@@ -23,3 +33,6 @@
 - [image_pipeline](https://github.com/ros-perception/image_pipeline)
 - [calibration_tools](https://github.com/autocore-ai/calibration_tools)
 - [camera_calibration](https://navigation.ros.org/tutorials/docs/camera_calibration.html)
+- [imu_utils](https://github.com/gaowenliang/imu_utils)
+- [code_utils](https://github.com/gaowenliang/code_utils)
+

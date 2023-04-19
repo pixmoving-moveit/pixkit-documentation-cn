@@ -1,11 +1,19 @@
 # IMU标定
 
-## 数据准备
+## 概要
 
+IMU（惯性测量单元）是自主驾驶汽车中重要的传感器之一，可以测量车辆在三维空间中的加速度和角速度信息。为了保证自主驾驶汽车的精确控制和定位，需要对IMU进行内参标定。内参标定的目的是精确定量测量设备的误差参数，包括加速度计和陀螺仪的偏置、比例因子、非正交性等参数。通过内参标定可以提高IMU的精度，从而提高自主驾驶汽车的定位精度和控制精度。
+
+## 前提条件
+- 完成了[标定工具安装](./%E6%A0%87%E5%AE%9A%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85.md)
+- 准备硬件：
+    - [华测CHC® CGI-410](https://www.huace.cn/product/product_show/467)
+
+## 开始标定
+## 数据准备
+### step-1: 检测摄像头是否联通工控机
 ### imu
 
-- apt-get install libceres-dev
-- apt-get install libdw-dev
 #### (1)imu内参标定
 
 - 推荐使用频率200hz以上的imu，在使用之前需要标定imu的内外参，使用[imu_utils](https://github.com/gaowenliang/imu_utils)开源工具进行标定，需要有ROS[code_utils](https://github.com/gaowenliang/code_utils)工具环境。
@@ -63,17 +71,6 @@ imuAccBiasN: 1.3379378640306186e-04
 imuGyrBiasN: 4.3430855283551206e-05
 ```
 
-#### (2)imu外参标定
 
-使用[lidar_aglin](https://github.com/miracle629/lidar_align)开源工具进行标定，需要对imu的数据进行积分获取transform，录制sensor_msgs/Pointcloud2与/sensor_msgs/Imu数据，bag路径放入lidar_aglin.launch的参数中
-
-获取标定数据后替换掉lio_sam/config/param.yam中的imu外参参数
-
-
-
-### LiDAR准备
-
-* 需使用1.6.1的[velodyne](https://github.com/ros-drivers/velodyne)驱动，需要点云里的time字段来去畸变。
-
-
-
+## NEXT
+现在，您已经完成`camera内参标定`，[LiDAR-IMU标定](./LiDAR-IMU%E6%A0%87%E5%AE%9A.md)
