@@ -123,7 +123,7 @@ Acc:
 ### 自动驾驶软硬件文档支持
 - [刷写系统](./%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%E5%88%B7%E5%86%99/%E5%88%B7%E5%86%99%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F.md)
 - [硬件集成](./%E7%A1%AC%E4%BB%B6%E5%AE%89%E8%A3%85/index.md)
-- [底盘上手](./pix%E5%BA%95%E7%9B%98%E4%B8%8A%E6%89%8B/index.md)
+- [pix底盘使用手册](./pix%E5%BA%95%E7%9B%98%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/index.md)
 - [传感器标定](./%E4%BC%A0%E6%84%9F%E5%99%A8%E6%A0%87%E5%AE%9A/camera%E5%86%85%E5%8F%82%E6%A0%87%E5%AE%9A.md)
 - [地图制作](./%E5%9C%B0%E5%9B%BE/index.md)
 - [Autoware教学](./Autoware%E4%B8%8A%E6%89%8B/%E5%90%AF%E5%8A%A8autoware.md)
@@ -132,9 +132,9 @@ Acc:
 对PIX或我们所提供的产品感兴趣？请随时与我们取得联系。 
 PIX 期待与全球跨领域的企业、组织、先行者们建立合作，共同致力于汽车产业与城市的创新变革。
 
-- 生态合作：[chase@pixmoving.com](chase@pixmoving.com)
-- 商务合作：[sean@pixmoving.com](sean@pixmoving.com)
-- 媒体报道：[yoki@pixmoving.com](yoki@pixmoving.com)
+- 生态合作：<chase@pixmoving.com>
+- 商务合作：<sean@pixmoving.com>
+- 媒体报道：<yoki@pixmoving.com>
 - 获得更多关于产品的信息：
 
 ![qr-code](./images/qr-code.png)
