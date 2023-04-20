@@ -43,24 +43,34 @@ rosbag info pix_data/imu/latest_imu.bag
 ```
 ![](./image/IMU_calibration/record01.jpg)
 
-### step-3: 启动标定
+### step-3: 启动标定程序脚本
+```shell
+# 运行标定脚本
+./calibration_script/imu_intrinsic/run_imu_cali.sh
+# 数据播放结束，[ctrl+c]退出标定
+```
+![](./image/IMU_calibration/IMU_calibration.gif)
 
-#### (1)imu内参标定
+### step-4:成功标志
+```shell
+#  有结果输出
+cat ./calibration_script/imu_intrinsic/config/param.yaml
+```
+![](./image/IMU_calibration/IMU_calibration1.jpg)
 
-- 推荐使用频率200hz以上的imu，在使用之前需要标定imu的内外参，使用[imu_utils](https://github.com/gaowenliang/imu_utils)开源工具进行标定，需要有ROS[code_utils](https://github.com/gaowenliang/code_utils)工具环境。
 
-- 录制2小时sensor_msgs/Imu数据.
+### 标定结果
+>imu内参标定文件参数对应关系
 
-- 录制好的数据已200倍速率播放
+|xsens_imu_param.yaml | param.yaml |
+|---- | ---- |
+|`gyr_n`|`imuGyrNoise`|
+|`gyr_w`|`imuGyrBiasN`|
+|`acc_n`|`imuAccNoise`|
+|`acc_w`|`imuAccBiasN`|
 
-- 需更具实际录制时间修改max_time_min的参数
 
-  ![image-20210901162433731](/Users/jinbeng/Library/Application Support/typora-user-images/image-20210901162433731.png)
-
-- 标定好的内参存在imu_utils/data/[vendor_of_imu]_imu_param.yaml文件中的`gyr_n` `gyr_w` `acc_n` `acc_w`参数替换到LIO-SAM的param.yaml文件中的
-
-  Imu_utils/data/xsens_imu_param.yaml
-
+sensor_calibration_tool/shared_folder/pix_data/imu/result/xsens_imu_param.yaml
 ```
 Gyr:
     unit: " rad/s"
@@ -92,8 +102,7 @@ Acc:
     acc_w: 1.2450173910710051e-04
 ```
 
-Lio_sam/config/param.yaml
-
+calibration_script/imu_intrinsic/config/param.yaml
 ```
 # IMU Settings
 imuAccNoise: 5.9215155351791055e-03
