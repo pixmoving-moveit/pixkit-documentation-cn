@@ -121,7 +121,6 @@ Acc:
 ![lanelet2-map](./images/lanelet2-map.jpg)
 
 ### 自动驾驶软硬件文档支持
-- [刷写系统](./%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%E5%88%B7%E5%86%99/%E5%88%B7%E5%86%99%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F.md)
 - [硬件集成](./%E7%A1%AC%E4%BB%B6%E5%AE%89%E8%A3%85/index.md)
 - [pix底盘使用手册](./pix%E5%BA%95%E7%9B%98%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/index.md)
 - [传感器标定](./%E4%BC%A0%E6%84%9F%E5%99%A8%E6%A0%87%E5%AE%9A/camera%E5%86%85%E5%8F%82%E6%A0%87%E5%AE%9A.md)
