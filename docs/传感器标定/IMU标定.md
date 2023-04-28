@@ -25,38 +25,57 @@ IMU（惯性测量单元）是自主驾驶汽车中重要的传感器之一，�
 ### step-2: 录制imu数据准备
 - 录制时间：2个小时
 - 水平地面，车辆静止放置
-- 启动录制脚本
+- 启动传感器
+
 ```shell
-# 进入容器
-cd sensor_calibration_tool
-./docker.sh exec
-# 执行imu采集脚本
-./get_imu_bag.sh
-# ctrl+c 结束录制 -- 两个小时后
+source pix/pit-kit/Autoware/install/setup.bash
+ros2 launch pixkit_sensor_kit_launch sensing.launch.xml
 ```
+![](./image/IMU_calibration/start_sensing.gif)
+
+- 开始录制
+```shell
+cd collect_script/ros2bag_collect_script/
+./collect_ros2bag.sh imu.yaml
+cd -
+```
+![](./image/IMU_calibration/start_collect.gif)
+
 - 录制成功标志
-> 检查录制bag是否存在,并确定录制时间是否是大于`2hr`(2个小时)
 
 ```
-ll pix_data/imu/latest_imu.bag
-rosbag info pix_data/imu/latest_imu.bag
+ros2 bag info ros2bag/imu_latest_ros2bag
 ```
-![](./image/IMU_calibration/record01.jpg)
+> 检查录制时间`Duration`是否是大于`2hr`(2个小时)[8802.282/3600=1.45h]
+
+> 检查`Count`和[Duration乘以频率]是否相差不多:表示数据没有丢失过多
+
+> - imu频率为100hz--8802.282*100=8802282
+
+![](./image/IMU_calibration/check_ros2bag.jpg)
+
 
 ### step-3: 启动标定程序脚本
+
+- 把启动的传感器程序停止
+
+> 输入`ros2 topic list`, 只剩下两个话题表示没有程序中运行
+
+![](./image/rosnode_skip.jpg)
+
+- 运行标定脚本
+
 ```shell
-# 运行标定脚本
 ./calibration_script/imu_intrinsic/run_imu_cali.sh
-# 数据播放结束，[ctrl+c]退出标定
 ```
-![](./image/IMU_calibration/IMU_calibration.gif)
+![](./image/IMU_calibration/imu_cali.gif)
 
 ### step-4:成功标志
 ```shell
 #  有结果输出
-cat ./calibration_script/imu_intrinsic/config/param.yaml
+cat ./calibration_script/imu_intrinsic/output/output_imu_intrinsic.yaml
 ```
-![](./image/IMU_calibration/IMU_calibration1.jpg)
+![](./image/IMU_calibration/result.jpg)
 
 
 ### 标定结果

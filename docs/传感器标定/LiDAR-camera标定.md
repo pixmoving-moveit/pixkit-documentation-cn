@@ -30,50 +30,50 @@
 ### step-1: 采集标定数据
 #### 开始采集
 ```shell
-# 进入docker容器
-./docker.sh  exec
-# 执行采集脚本 
-./get_pcd_png.sh
-# ctrl+c 快捷键结束采集
-```
-![](./image/lidar2camera/get_pcd_png1.gif)
 
+```
+![](./image/collect_data/pcd_png.gif)
 #### 检查采集的数据是否采集成功
 ```shell
-# ctrl+d 退出容器
-# 确保数据采集成
-ll ./shared_folder/pix_data/
-ll ./shared_folder/pix_data/latest/pcd/
-ll ./shared_folder/pix_data/latest/png/
+ll ros2bag/pcd_png_data
 ```
-![](./image/lidar2camera/check_calibration_data.gif)
+![](./image/collect_data/pcd_png1.jpg)
+
 
 ### step-2: 启动标定程序
 #### 文件结构
-
 ![](./image/lidar2camera/file_structure.jpg)
 
 |脚本|说明|备注
 | ---- | ---- | ---- |
 |lidar2camera.sh | 标定程序启动脚本 | 无 |
 |lidar2camera.yaml | 标定程序配置文件 | 标定程序的输入参数 |
-|config/center_camera-intrinsic.json| 相机内参文件| 完成了[camera内参标定](./camera%E5%86%85%E5%8F%82%E6%A0%87%E5%AE%9A.md)自动填入|
-|config/top_center_lidar-to-center_camera-extrinsic.json|外参初始文件|默认即可|
-|config/parser.py|生成sensors_calibration.yaml文件|生成autoware可用的参数文件|
-|config/sensors_calibration.yaml|外参数文件|用于autoware可用的参数文件|
-|config/example.jpg|标定输出示例结果| 完成了[camera内参标定](./camera%E5%86%85%E5%8F%82%E6%A0%87%E5%AE%9A.md)自动填入 |
-|config/example.txt|标定输出示例结果| 完成了[camera内参标定](./camera%E5%86%85%E5%8F%82%E6%A0%87%E5%AE%9A.md)自动填入 |
+|parser.py|生成sensors_calibration.yaml文件|生成autoware可用的参数文件|
+|input|标定原始数据|标定程序需要的原始数据|
+|input/output_camera-intrinsic.json| 相机内参文件| 完成了[camera内参标定](./camera%E5%86%85%E5%8F%82%E6%A0%87%E5%AE%9A.md)输出文件|
+|input/top_center_lidar-to-center_camera-extrinsic.json|外参初始文件|默认即可|
+|output/sensors_calibration.yaml|外参数文件|用于autoware可用的参数文件|
+|output/example.jpg|标定输出示例结果| |
+|output/example.txt|标定输出示例结果| |
 
 
 #### calibration_script/lidar2camera/lidar2camera.yaml 
 
 ![](./image/lidar2camera/configuration_file.jpg)
 
-|参数名称|参数作用|
-| ---- | ---- |
-|pcd_path|标定程序需要的输入图片路径|
-|png_path|标定程序需要的输入点云路径|
+|参数名称|参数作用| 来源 |
+| ---- | ---- | --- |
+|pcd_path|标定程序需要的输入图片路径| ros2bag/pcd_png_data/latest.pcd |
+|png_path|标定程序需要的输入点云路径| ros2bag/pcd_png_data/latest.png |
+|camera_intrinsic_filename|标定程序需要的输入点云路径| calibration_script/camera_intrinsic/output/output_camera-intrinsic.json |
+|lidar2camera_extrinsic_filename|标定程序需要的输入点云路径| 默认即可 |
 
+### 复制标定原始数据到input文件夹
+|复制文件|
+| -- |
+|ros2bag/pcd_png_data/latest.pcd > calibration_script/lidar2camera/input/latest.pcd|
+|ros2bag/pcd_png_data/latest.png > calibration_script/lidar2camera/input/latest.png|
+|calibration_script/camera_intrinsic/output/output_camera-intrinsic.json > calibration_script/lidar2camera/input/output_camera-intrinsic.json|
 
 ### 启动标定
 
@@ -117,13 +117,21 @@ ll ./shared_folder/pix_data/latest/png/
 <kbd>Save Image</kbd>: 当标定结束后，单击此按钮，则默认情况下将校准图像、外参和内参矩阵存储在``
 
 ### step-4: 验证标定结果
-- 文件1：`~/pix/pit-kit/Autoware/install/individual_params/share/individual_params/config/default/pixkit_sensor_kit/sensors_calibration.yaml`
-- 文件2：`~/pix/pit-kit/Autoware/install/pixkit_sensor_kit_description/share/pixkit_sensor_kit_description/config/sensors_calibration.yaml`
-
-- 标定结果：`calibration_script/lidar2camera/config/sensors_calibration.yaml`
+- 把标定结果填入参数配置文件
+    - 文件1：`~/pix/pit-kit/Autoware/install/individual_params/share/individual_params/config/default/pixkit_sensor_kit/sensors_calibration.yaml`
+    - 文件2：`~/pix/pit-kit/Autoware/install/pixkit_sensor_kit_description/share/pixkit_sensor_kit_description/config/sensors_calibration.yaml`
+    - 标定结果：`calibration_script/lidar2camera/config/sensors_calibration.yaml`
 
 第一步：备份`文件2`和`文件2`
+
 第二步：把`标定结果`，填写到`文件2`和`文件2`里
+
+- 启动模拟查看
+```shell
+~/autoware_sim.sh
+```
+![](./image/lidar2camera/result.jpg)
+![](./image/lidar2camera/result2.gif)
 
 
 ## NEXT
