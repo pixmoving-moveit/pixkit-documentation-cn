@@ -30,7 +30,7 @@
 ### step-1: 采集标定数据
 #### 开始采集
 ```shell
-
+./calibration_script/lidar2camera/lidar2camera.sh
 ```
 ![](./image/collect_data/pcd_png.gif)
 #### 检查采集的数据是否采集成功
