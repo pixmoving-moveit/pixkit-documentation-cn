@@ -8,6 +8,10 @@ IMU（惯性测量单元）是自主驾驶汽车中重要的传感器之一，�
 - 完成了[标定工具安装](./%E6%A0%87%E5%AE%9A%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85.md)
 - 准备硬件：
     - [华测CHC® CGI-410](https://www.huace.cn/product/product_show/467)
+- 数据类型: `sensor_msgs/msg/Imu`
+- 数据要求: 只录制`angular_velocity`和`linear_acceleration`即可
+
+> 满足`数据要求时，其他传感器ros2bag数据，也可以进行imu标定`
 
 ## 开始标定
 > 注意点：保持工控机没有运行其他ros程序，防止占用传感器
