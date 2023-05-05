@@ -8,28 +8,92 @@ IMU（惯性测量单元）是自主驾驶汽车中重要的传感器之一，�
 - 完成了[标定工具安装](./%E6%A0%87%E5%AE%9A%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85.md)
 - 准备硬件：
     - [华测CHC® CGI-410](https://www.huace.cn/product/product_show/467)
+- 数据类型: `sensor_msgs/msg/Imu`
+- 数据要求: 只录制`angular_velocity`和`linear_acceleration`即可
+
+> 满足`数据要求时，其他传感器ros2bag数据，也可以进行imu标定`
 
 ## 开始标定
-## 数据准备
-### step-1: 检测摄像头是否联通工控机
-### imu
+> 注意点：保持工控机没有运行其他ros程序，防止占用传感器
 
-#### (1)imu内参标定
 
-- 推荐使用频率200hz以上的imu，在使用之前需要标定imu的内外参，使用[imu_utils](https://github.com/gaowenliang/imu_utils)开源工具进行标定，需要有ROS[code_utils](https://github.com/gaowenliang/code_utils)工具环境。
+### step-1: 配置`华测CHC® CGI-410`，并检测组合导航是否联通工控机
+1. 打开`google_chrome`浏览器
+2. 输入网址：`192.168.1.110`
+3. 依次点击：`I/O设置` -> `TCP Server/NTRIP Caster4` -> <kbd>断开</kbd> -> <kbd>连接</kbd>
+![](./image/IMU_calibration/configuration_CGI410_02.gif)
+![](./image/IMU_calibration/configuration_CGI410_03.jpg)
+4. 打开终端输入：`nc 192.168.1.110 9904`确定组合导航是否联通工控机
 
-- 录制2小时sensor_msgs/Imu数据.
 
-- 录制好的数据已200倍速率播放
+### step-2: 录制imu数据准备
+- 录制时间：2个小时
+- 水平地面，车辆静止放置
+- 启动传感器
 
-- 需更具实际录制时间修改max_time_min的参数
+```shell
+source pix/pit-kit/Autoware/install/setup.bash
+ros2 launch pixkit_sensor_kit_launch sensing.launch.xml
+```
+![](./image/IMU_calibration/start_sensing.gif)
 
-  ![image-20210901162433731](/Users/jinbeng/Library/Application Support/typora-user-images/image-20210901162433731.png)
+- 开始录制
+```shell
+cd collect_script/ros2bag_collect_script/
+./collect_ros2bag.sh imu.yaml
+cd -
+```
+![](./image/IMU_calibration/start_collect.gif)
 
-- 标定好的内参存在imu_utils/data/[vendor_of_imu]_imu_param.yaml文件中的`gyr_n` `gyr_w` `acc_n` `acc_w`参数替换到LIO-SAM的param.yaml文件中的
+- 录制成功标志
 
-  Imu_utils/data/xsens_imu_param.yaml
+```
+ros2 bag info ros2bag/imu_latest_ros2bag
+```
+> 检查录制时间`Duration`是否是大于`2hr`(2个小时)[8802.282/3600=1.45h]
 
+> 检查`Count`和[Duration乘以频率]是否相差不多:表示数据没有丢失过多
+
+> - imu频率为100hz--8802.282*100=8802282
+
+![](./image/IMU_calibration/check_ros2bag.jpg)
+
+
+### step-3: 启动标定程序脚本
+
+- 把启动的传感器程序停止
+
+> 输入`ros2 topic list`, 只剩下两个话题表示没有程序中运行
+
+![](./image/rosnode_skip.jpg)
+
+- 运行标定脚本
+
+```shell
+./calibration_script/imu_intrinsic/run_imu_cali.sh
+```
+![](./image/IMU_calibration/imu_cali.gif)
+
+### step-4:成功标志
+```shell
+#  有结果输出
+cat ./calibration_script/imu_intrinsic/output/output_imu_intrinsic.yaml
+```
+![](./image/IMU_calibration/result.jpg)
+
+
+### 标定结果
+>imu内参标定文件参数对应关系
+
+|xsens_imu_param.yaml | param.yaml |
+|---- | ---- |
+|`gyr_n`|`imuGyrNoise`|
+|`gyr_w`|`imuGyrBiasN`|
+|`acc_n`|`imuAccNoise`|
+|`acc_w`|`imuAccBiasN`|
+
+
+sensor_calibration_tool/shared_folder/pix_data/imu/result/xsens_imu_param.yaml
 ```
 Gyr:
     unit: " rad/s"
@@ -61,8 +125,7 @@ Acc:
     acc_w: 1.2450173910710051e-04
 ```
 
-Lio_sam/config/param.yaml
-
+calibration_script/imu_intrinsic/config/param.yaml
 ```
 # IMU Settings
 imuAccNoise: 5.9215155351791055e-03
