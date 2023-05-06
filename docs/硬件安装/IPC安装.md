@@ -7,7 +7,11 @@
 - Ctrl+Alt+t 启动终端：用户名：pixkit，用户名密码：pixmoving
 - 检查主机静态IP：192.168.1.102，如果不是，请修改静态IP地址，否则传感器数据不能接收
     ![avatar](./image/IPC_picture/Snipaste_2023-04-28_14-05-45.png)
+    
+> 网口位置对应关系
+![](./image/IPC_picture/network_port_position.jpg)
 - 检查底盘can数据
+
     ![avatar](./image/IPC_picture/Snipaste_2023-04-28_14-23-43.png)
 - 检查激光雷达：RS-Helios-16P ；192.168.1.200
     ![avatar](./image/IPC_picture/Snipaste_2023-04-28_14-19-14.png)
