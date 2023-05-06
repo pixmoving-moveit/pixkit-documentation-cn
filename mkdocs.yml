@@ -39,4 +39,5 @@ plugins:
   - mkdocs-video
   - search
 site_url: https://autowarefoundation.github.io/autoware-documentation
-repo_url: https://github.com/pixmoving-moveit/pixkit-documentation
+# repo_url: https://github.com/pixmoving-moveit/pixkit-documentation
+repo_url: https://github.com/pixmoving-moveit

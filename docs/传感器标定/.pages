@@ -5,5 +5,5 @@ nav:
   - LiDAR-camera标定.md
   - IMU标定.md
   - LiDAR-IMU标定.md
-  # - LiDAR-LiDAR标定.md
+  - LiDAR-LiDAR标定.md
   
