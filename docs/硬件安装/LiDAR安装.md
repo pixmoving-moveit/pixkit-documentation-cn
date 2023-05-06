@@ -33,7 +33,7 @@
 - 打开工控机，Ctrl+Alt+t 启动终端
 ```shell 
 /home/pixkit/pix/pit-kit/Autoware
-source install/setup.bash 
+source ~/pix/pit-kit/Autoware/install/setup.bash 
 ros2 run rslidar_sdk rslidar_sdk_node 
 ```
 - 启动ros2 驱动
