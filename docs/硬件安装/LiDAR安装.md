@@ -24,6 +24,9 @@
     ![avatar](./image/lidar_picture/Snipaste_2023-04-24_10-49-49.png)
     ![avatar](./image/lidar_picture/Snipaste_2023-04-24_11-21-33.png)
 - 支持Web查看设备信息，更新固件，修改IP
+
+> 打开浏览器，输入192.168.1.200即可
+
     ![avatar](./image/lidar_picture/Snipaste_2023-04-24_11-01-47.png)
 
 #### 成功标志
