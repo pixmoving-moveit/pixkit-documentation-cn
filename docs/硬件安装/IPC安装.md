@@ -10,6 +10,7 @@
     
 > 网口位置对应关系
 ![](./image/IPC_picture/network_port_position.jpg)
+
 - 检查底盘can数据
 
     ![avatar](./image/IPC_picture/Snipaste_2023-04-28_14-23-43.png)
