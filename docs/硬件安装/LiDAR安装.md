@@ -41,23 +41,3 @@ ros2 run rslidar_sdk rslidar_sdk_node
     ![avatar](./image/lidar_picture/Snipaste_2023-04-24_14-49-26.png)
 - 启动顺序
     ![avatar](./image/lidar_picture/Snipaste_2023-04-24_14-50-15.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

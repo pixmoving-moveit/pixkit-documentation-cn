@@ -13,4 +13,3 @@ ros2 launch pixkit_sensor_kit_launch camera_launch.py
     ![avatar](./image/camera_picture/Snipaste_2023-04-24_16-26-17.png)
 - rqt工具包查看
     ![avatar](./image/camera_picture/Snipaste_2023-04-24_16-28-52.png)
-

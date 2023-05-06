@@ -69,12 +69,3 @@
     ![avatar](./image/gnss_picture/Snipaste_2023-04-23_14-20-52.png)
 - 如需使用其他参数请参考CGI-410使用手册。
     [CGI-410使用手册](./image/CGI-410.pdf)
-
-
-
-
-
-
-
-
-
