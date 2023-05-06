@@ -4,7 +4,6 @@
 ## 硬件启动
 - 打开工控机，Ctrl+Alt+t 启动终端
 ```shell
-/home/pixkit/pix/pit-kit/Autoware
 source install/setup.bash 
 ros2 launch pixkit_sensor_kit_launch camera_launch.py 
 ```
