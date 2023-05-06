@@ -8,18 +8,30 @@
     - 车头补盲雷达[RS-Bpearl]
     
 ## 开始标定
-### step-2: 选择标定场地
-- 两个lidar的共视区域，超过2m X 2m X 2m-立体物体(比如墙角)
+### step-1: 选择标定场地
+- 1.8m X 0.9m 木板 准备两块
+- 两块木板放置，两个lidar的共视区域
+- 两块木板放置，成120度夹角放置
+![](./image/lidar2lidar/object_of_reference.jpg)
 
-### step-1: 启动标定程序
+> 如果没有这样的两块木板，选择一个墙角作为参照物也可以
 
-> 观察rviz2，当白色点云和彩色点云，完全重合时标定结束
-
-> - 白色点云: 是顶部雷达
-> - 彩色点云: 是车头补盲雷达
+### step-2: 启动标定程序
 
 ```shell
 ./calibration_script/lidar2lidar/run_lidar2lidar.sh
 ```
+![](./image/lidar2lidar/lidar2lidar.gif)
+
+### step-3: 检查标定结果
+
+> 观察rviz2，当白色点云和彩色点云，[左视图|右视图|俯视图|正视图]完全重合时标定结束
+
+> - 白色点云: 是顶部雷达
+> - 彩色点云: 是车头补盲雷达
+
+![](./image/lidar2lidar/lidar2lidar.jpg)
+
+
 
 
