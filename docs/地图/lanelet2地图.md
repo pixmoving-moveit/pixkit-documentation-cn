@@ -189,6 +189,9 @@ parking_lot在自动驾驶车辆进入泊车模式时会将`parking_lot`转换�
 5. 调整`light_bulbs`的颜色，点击某一个灯泡，就能够在右侧属性编辑栏设置`color`为`read`、`green`、`yellow`。
 ![draw_trafficlight_5](./images/draw_trafficlight_5.jpg)
 
+## lanelet2地图示例
+[lanelet2地图示例下载](https://drive.google.com/file/d/1499_nsbUbIeturZaDj7jhUownh5fvXHd/view?usp=sharing)
+
 ## 参考资料
  - [https://www.autoware.org/_files/ugd/984e93_9978752488284f4ab6853f83a0c044bc.pdf?index=true](https://www.autoware.org/_files/ugd/984e93_9978752488284f4ab6853f83a0c044bc.pdf?index=true)
  - [https://github.com/fzi-forschungszentrum-informatik/Lanelet2](https://github.com/fzi-forschungszentrum-informatik/Lanelet2)
