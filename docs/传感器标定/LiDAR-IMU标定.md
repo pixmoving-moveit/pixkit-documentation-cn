@@ -10,15 +10,17 @@ LiDAR和IMU是机器人领域中常用的传感器。LiDAR主要用于获取环�
 
 ## 前提条件
 - 完成了[标定工具安装](./%E6%A0%87%E5%AE%9A%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85.md)
+- 完成了[GNSS安装->设备校准](./../%E7%A1%AC%E4%BB%B6%E5%AE%89%E8%A3%85/GNSS%E5%AE%89%E8%A3%85.md)
 - 准备硬件：
     - [华测CHC® CGI-410](https://www.huace.cn/product/product_show/467)
     - 顶部激光雷达[RS-Helios-16P]
-    - 组合导航定位状态`组合导航`
+![](./image/lidar2imu/gnss_status.jpg)
+
 
 ## 开始标定
+
 ### step-1: 采集数据
 - 启动传感器
-
 ```shell
 source pix/pit-kit/Autoware/install/setup.bash
 ros2 launch pixkit_sensor_kit_launch sensing.launch.xml
@@ -37,6 +39,7 @@ cd -
 
 > 录制要求： 
 >   - 车辆走8字，走三圈
+>   - 录制时，不要有动态物体移动
 
 ![](./image/lidar2imu/collect_data2.gif)
 
@@ -60,6 +63,7 @@ ros2 bag info ros2bag/gnss_lidar_latest_ros2bag
 
 - 处理数据成功标志
 
+查看终端打印结果, `number=[864]`表示在`ros2bag/gnss_lidar/lidar_top`文件夹中，产生了`864`张PCD文件  
 ![](./image/lidar2imu/result.jpg)
 
 
@@ -93,3 +97,8 @@ cat ./calibration_script/lidar2imu/output/sensors_calibration.yaml
 
 ## NEXT
 现在，您已经完成`LiDAR-IMU标定`，接下来可以开始[LiDAR-LiDAR标定](./LiDAR-camera%E6%A0%87%E5%AE%9A.md)
+
+## 常见问题
+### Q1: 执行`step-3: 开始标定`GUI界面闪退
+- 问题原因: 在`step-1: 采集数据`步骤采集的数据有问题
+- 解决方法: 重新执行`step-1: 采集数据`

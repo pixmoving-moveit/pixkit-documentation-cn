@@ -30,14 +30,24 @@
 ### step-1: 采集标定数据
 #### 开始采集
 ```shell
-./calibration_script/lidar2camera/lidar2camera.sh
+# 工作路径是标定工具根目录<sensor_calibration_tool>
+./collect_script/data_collect_script/pcd_png_extractor.sh
 ```
 ![](./image/collect_data/pcd_png.gif)
+
 #### 检查采集的数据是否采集成功
 ```shell
-ll ros2bag/pcd_png_data
+ll -h ros2bag/pcd_png_data
 ```
+> 会看见latest.pcd和latest.png两个文件，查看时间是最近产生的
 ![](./image/collect_data/pcd_png1.jpg)
+
+```shell
+nautilus ros2bag/pcd_png_data/
+```
+
+> 会看见latest.pcd和latest.png两个文件，点击打开latest.png图片，查看图片是否异常
+![](./image/lidar2camera/check.png)
 
 
 ### step-2: 启动标定程序
@@ -76,7 +86,6 @@ ll ros2bag/pcd_png_data
 |calibration_script/camera_intrinsic/output/output_camera-intrinsic.json > calibration_script/lidar2camera/input/output_camera-intrinsic.json|
 
 ### 启动标定
-
 ```shell
 ./calibration_script/lidar2camera/lidar2camera.sh
 ```
@@ -114,13 +123,16 @@ ll ros2bag/pcd_png_data
 
 <kbd>Reset</kbd>: 单击此按钮以重置所有手动调整，恢复最初参数。
 
-<kbd>Save Image</kbd>: 当标定结束后，单击此按钮，则默认情况下将校准图像、外参和内参矩阵存储在``
+<kbd>Save Image</kbd>: 当标定结束后，单击此按钮，则默认情况下将校准图像、外参和内参矩阵存储在`./calibration_script/lidar2camera/output`文件夹下
+
+> 当标定完成时，先点击`Save Image`按钮，在点击`图像化界面的关闭按钮`
+![](./image/lidar2camera/reslut.jpg)
 
 ### step-4: 验证标定结果
 - 把标定结果填入参数配置文件
     - 文件1：`~/pix/pit-kit/Autoware/install/individual_params/share/individual_params/config/default/pixkit_sensor_kit/sensors_calibration.yaml`
     - 文件2：`~/pix/pit-kit/Autoware/install/pixkit_sensor_kit_description/share/pixkit_sensor_kit_description/config/sensors_calibration.yaml`
-    - 标定结果：`calibration_script/lidar2camera/config/sensors_calibration.yaml`
+    - 标定结果：`calibration_script/lidar2camera/output/sensors_calibration.yaml`
 
 第一步：备份`文件2`和`文件2`
 
@@ -128,7 +140,7 @@ ll ros2bag/pcd_png_data
 
 - 启动模拟查看
 ```shell
-~/autoware_sim.sh
+./calibration_script/lidar2camera/inspect/autoware_sim.sh
 ```
 ![](./image/lidar2camera/result.jpg)
 ![](./image/lidar2camera/result2.gif)
@@ -136,3 +148,9 @@ ll ros2bag/pcd_png_data
 
 ## NEXT
 现在，您已经完成`LiDAR-camera标定`，接下来可以开始[IMU标定](./IMU%E6%A0%87%E5%AE%9A.md)
+
+## 常见问题
+### Q1: 执行`step-1: 采集标定数据` -> `检查采集的数据是否采集成功`时，图片显示异常,如下图
+![](./image/lidar2camera/q1.jpg)
+- 数据采集失败
+- 解决：在工控机上，重新插拔相机的USB接口，在次采集

@@ -19,11 +19,12 @@ IMU（惯性测量单元）是自主驾驶汽车中重要的传感器之一，�
 
 ### step-1: 配置`华测CHC® CGI-410`，并检测组合导航是否联通工控机
 1. 打开`google_chrome`浏览器
-2. 输入网址：`192.168.1.110`
+2. 输入网址：`192.168.1.110`，输入用户名`admin`和密码`password`
 3. 依次点击：`I/O设置` -> `TCP Server/NTRIP Caster4` -> <kbd>断开</kbd> -> <kbd>连接</kbd>
 ![](./image/IMU_calibration/configuration_CGI410_02.gif)
+4. `GPCHC`设置成`100Hz`,其他设置成`关闭`
 ![](./image/IMU_calibration/configuration_CGI410_03.jpg)
-4. 打开终端输入：`nc 192.168.1.110 9904`确定组合导航是否联通工控机
+5. 打开终端输入：`nc 192.168.1.110 9904`确定组合导航是否联通工控机
 
 
 ### step-2: 录制imu数据准备
@@ -39,6 +40,7 @@ ros2 launch pixkit_sensor_kit_launch sensing.launch.xml
 
 - 开始录制
 ```shell
+# 工作路径是标定工具根目录<sensor_calibration_tool>
 cd collect_script/ros2bag_collect_script/
 ./collect_ros2bag.sh imu.yaml
 cd -
@@ -50,11 +52,11 @@ cd -
 ```
 ros2 bag info ros2bag/imu_latest_ros2bag
 ```
-> 检查录制时间`Duration`是否是大于`2hr`(2个小时)[8802.282/3600=1.45h]
+> 检查录制时间`Duration`是否是大于`2hr`(2个小时)[8802.282/3600=2.45h]
 
-> 检查`Count`和[Duration乘以频率]是否相差不多:表示数据没有丢失过多
+> 检查`Count`和[Duration乘以频率计算结果]是否相差不多:表示数据没有丢失过多
 
-> - imu频率为100hz--8802.282*100=8802282
+> - imu频率为100hz`8802.282*100=880228.2`
 
 ![](./image/IMU_calibration/check_ros2bag.jpg)
 
@@ -63,7 +65,7 @@ ros2 bag info ros2bag/imu_latest_ros2bag
 
 - 把启动的传感器程序停止
 
-> 输入`ros2 topic list`, 只剩下两个话题表示没有程序中运行
+> 输入`ros2 topic list`, 只剩下两个话题表示没有ROS节点在运行
 
 ![](./image/rosnode_skip.jpg)
 

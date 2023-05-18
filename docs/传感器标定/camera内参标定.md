@@ -47,6 +47,12 @@ cheese
 
 > 标定过程时间越长，点击三个按钮后，程序计算时间越长，所以点击后，等待程序即可，不要重复点击
 
+- `X`参数标定：通过左右移动标定板
+- `Y`参数标定：通过上下移动标定板
+- `Size`参数标定：通过靠近摄像头时，上下翻转标定板
+- `SKew`参数标定：通过上下左右翻转标定板
+![](./image/camera_intrinsic/camera_intrinsic_start3.gif)
+
 - <kbd>CALIBRATE</kbd>按钮：
     - X-Y-Size-Skew四个参数达标后，按钮从灰色变为绿色，表示可以点击
     - 点击后，开始计算标定结果，成功标志-终端输出结果
@@ -55,26 +61,22 @@ cheese
     - 点击后，保存标定结果，成功标志-终端输出结果
 - <kbd>COMMIT</kbd>按钮：
     - 点击<kbd>CALIBRATE</kbd>按钮，终端输出后，按钮从灰色变为绿色，表示可以点击
-    - 点击后，成功标志-终端输出结果，程序GUI界面退出
+    - 点击后，成功标志-终端输出结果，程序GUI界面退出[如果没有退出，在终端界面按下ctrl+c结束即可]
 
 ![](./image/camera_intrinsic/camera_intrinsic_start6.jpg)
 
-- `X`参数标定：通过左右移动标定板
-- `Y`参数标定：通过上下移动标定板
-- `Siz`e参数标定：通过靠近摄像头时，上下翻转标定板
-- `SKew`参数标定：通过上下左右翻转标定板
-![](./image/camera_intrinsic/camera_intrinsic_start3.gif)
+
 
 ### step-4: 标定成功验证
 
-> 会输出压缩文件`/tmp/calibrationdata.tar.gz`,查看时间是最近产生的
+> 会输出内参文件`output_camera-intrinsic.json`,查看时间是最近产生的
 
 > 注意：可以复制，但请不要移动或删除该文件
 
 ```shell
-ll -h /tmp/calibrationdata.tar.gz
-# -rw-rw-r-- 1 pixkit pixkit 0  4月 14 16:59 /tmp/calibrationdata.tar.gz
+ll -h ./calibration_script/camera_intrinsic/output
 ```
+![](./image/camera_intrinsic/result.png)
 
 ## NEXT
 现在，您已经完成`camera内参标定`，接下来可以开始[LiDAR-camera标定](./LiDAR-camera%E6%A0%87%E5%AE%9A.md)
