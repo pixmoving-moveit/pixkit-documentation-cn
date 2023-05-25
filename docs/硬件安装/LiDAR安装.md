@@ -10,7 +10,28 @@
 - 点击下载：[RS-Helios-16p资料](https://www.robosense.ai/resources-81)
 - 根据操作文档设置雷达IP地址，出厂IP：192.168.1.200(切勿修改)
 
-#### RSview可视化
+#### rviz2 可视化显示
+- 打开工控机，Ctrl+Alt+t 启动终端，进入该路径
+    ![avatar](./image/lidar_picture/souce.png)
+
+```shell 
+source install/setup.bash 
+
+ros2 run rslidar_sdk rslidar_sdk_node 
+```
+- 启动ros2 驱动
+    ![avatar](./image/lidar_picture/1.png)
+
+- 启动rviz2 查看点云数据，修改Fixed Frame ：rs16，增加点云话题
+    ![avatar](./image/lidar_picture/Snipaste_2023-04-24_14-49-26.png)
+    ![avatar](./image/lidar_picture/topic.png)
+
+- 启动顺序
+    ![avatar](./image/lidar_picture/Snipaste_2023-04-24_14-50-15.png)
+
+#### RSview软件
+
+**注意**：RSview是速腾官方软件，使用方法建议按照RS官方文档操作，此处作为参考，官方软件更新迭代，操作界面或有不同。
 
 - 启动设备：带RJ45网口Window系统笔记本电脑
 - 设置笔记本IPV4IP地址：192.168.1.102
@@ -23,21 +44,8 @@
     ![avatar](./image/lidar_picture/Snipaste_2023-04-24_10-48-44.png)
     ![avatar](./image/lidar_picture/Snipaste_2023-04-24_10-49-49.png)
     ![avatar](./image/lidar_picture/Snipaste_2023-04-24_11-21-33.png)
-- 支持Web查看设备信息，更新固件，修改IP
-
-> 打开浏览器，输入192.168.1.200即可
-
+- 支持Web查看设备信息，更新固件，修改IP，打开浏览器，输入192.168.1.200即可
     ![avatar](./image/lidar_picture/Snipaste_2023-04-24_11-01-47.png)
 
-#### 成功标志
-- 打开工控机，Ctrl+Alt+t 启动终端
-```shell 
-source ~/pix/pit-kit/Autoware/install/setup.bash 
-ros2 run rslidar_sdk rslidar_sdk_node 
-```
-- 启动ros2 驱动
-    ![avatar](./image/lidar_picture/1.png)
-- 启动rviz2 查看点云数据，修改Fixed Frame ：rs16，增加点云话题
-    ![avatar](./image/lidar_picture/Snipaste_2023-04-24_14-49-26.png)
-- 启动顺序
-    ![avatar](./image/lidar_picture/Snipaste_2023-04-24_14-50-15.png)
+
+
