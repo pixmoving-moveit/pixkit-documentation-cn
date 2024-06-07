@@ -43,7 +43,7 @@ ros2 topic echo [topic name]
 ![vehicle_model](./images/vehicle_model.png)
 2. 查看底盘反馈是否正常，底盘反馈的topic见下表，也通过遥控器转向查看rviz2上的deg是否变化，有变化表示已连接，若不能关闭窗口等待30s重新启动auotware观察，命令如下
 ``` bash
-ros2 top echo [topic name]
+ros2 topic echo [topic name]
 ```
 
 | **Topic** | **类型** | **描述** |
