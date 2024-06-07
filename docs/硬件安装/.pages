@@ -1,7 +1,0 @@
-nav:
-  - Overview: index.md
-  - IPC安装.md
-  - LiDAR安装.md
-  - camera安装.md
-  - GNSS安装.md
-  - 超声波雷达安装.md
