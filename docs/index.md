@@ -132,7 +132,7 @@ Acc:
 PIX 期待与全球跨领域的企业、组织、先行者们建立合作，共同致力于汽车产业与城市的创新变革。
 
 - 生态合作：<chase@pixmoving.com>
-- 商务合作：<sean@pixmoving.com>
+- 商务合作：<nancy@pixmoving.com>
 - 媒体报道：<yoki@pixmoving.com>
 - 获得更多关于产品的信息：
 
