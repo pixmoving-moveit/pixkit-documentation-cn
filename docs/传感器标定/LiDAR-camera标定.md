@@ -12,8 +12,8 @@
 
 ## 标定车辆
 - hook 
-    - 顶部激光雷达[RS-Helios-16P]
-    - 车头相机[SG2-OX03CC-5200-GMSL2F-H120]
+    - 顶部激光雷达
+    - 车头相机
 
 ## 前提条件
 
@@ -29,6 +29,11 @@
 
 ### step-1: 采集标定数据
 #### 开始采集
+- 启动传感器
+```shell
+source pix/pit-kit/Autoware/install/setup.bash
+ros2 launch pixkit_sensor_kit_launch sensing.launch.xml
+```
 ```shell
 # 工作路径是标定工具根目录<sensor_calibration_tool>
 ./collect_script/data_collect_script/pcd_png_extractor.sh

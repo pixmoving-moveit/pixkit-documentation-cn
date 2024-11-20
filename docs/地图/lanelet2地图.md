@@ -1,5 +1,6 @@
 # Lanelet2地图
 ## Overview
+目的：通过网页导入地图（pcd格式）画图，最后导出矢量地图（lanelet2_map.osm）
 
 [Lanelet2](https://github.com/fzi-forschungszentrum-informatik/Lanelet2)是一个处理自动驾驶地图数据的C++库，在设计Lanelet2之初，其就被用于高效地处理面向复杂交通场景的高精度地图数据。灵活性与可拓展性作为Lanelet2的核心原则，使其能够处理未来地图的新特性。
 
